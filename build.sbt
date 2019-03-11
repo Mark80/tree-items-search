@@ -5,7 +5,7 @@ lazy val root = (project in file("."))
     .settings(
     Defaults.itSettings,
     inThisBuild(List(
-      organization    := "nokia",
+      organization    := "marco",
       scalaVersion    := "2.12.8"
     )),
     name := "tree-items-search",
