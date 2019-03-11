@@ -1,12 +1,12 @@
 package com.github.search.tree.repository
 
-import com.github.search.tree.model.Item
+import com.github.search.tree.model.Psychographics
 import com.github.search.tree.service.DataRepository
 
-class ItemRepository(override val items: List[Item]) extends DataRepository[Item] {
+class ItemRepository(override val items: List[Psychographics]) extends DataRepository[Psychographics] {
 
-  def nameCategoryPair(item: Item): (String, Item) =
+  def nameCategoryPair(item: Psychographics): (String, Psychographics) =
     (item.label, item)
 
-  def getChildren(t: Item): Option[List[Item]] = t.values
+  def getChildren(t: Psychographics): Option[List[Psychographics]] = t.values
 }

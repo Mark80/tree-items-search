@@ -4,27 +4,27 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.github.search.tree.routes.json.JsonSupport
-import com.github.search.tree.service.ItemService
+import com.github.search.tree.service.PsychographicsService
 
 import scala.concurrent.ExecutionContext
 
-trait ItemRoutes extends JsonSupport {
+trait PsychographicsRoutes extends JsonSupport {
 
   implicit val executionContext: ExecutionContext
 
-  def itemService: ItemService
+  def psychographicsService: PsychographicsService
 
-  val getItem: Route =
-    path("item" / Segment) { label =>
-      itemService.getByName(label) match {
+  val getPsychographic: Route =
+    path("psychographic" / Segment) { label =>
+      psychographicsService.getByName(label) match {
         case Some(item) => complete(item)
         case None       => complete(StatusCodes.NotFound)
       }
     }
 
-  val getItemFromParent: Route =
-    path("item" / "parent" / Segment / "name" / Segment) { (parent, name) =>
-      itemService.getFromParentByName(parent, name) match {
+  val getPsychographicFromParent: Route =
+    path("psychographic" / "parent" / Segment / "name" / Segment) { (parent, name) =>
+      psychographicsService.getFromParentByName(parent, name) match {
         case Some(category) => complete(category)
         case None           => complete(StatusCodes.NotFound)
       }

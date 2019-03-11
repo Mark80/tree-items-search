@@ -16,7 +16,7 @@ class CategoryServiceSpec extends WordSpec with Matchers with MockitoSugar {
     "call repository" in {
 
       val name = "category name"
-      val expectedResult = Category(17, Some(-1), Some(13), None, "category name", 1, None)
+      val expectedResult = Category(17, Some(-1), Some(13), None, "category name", 1, None, None, None)
 
       when(repositoryMock.getLeafBy(name)).thenReturn(Some(expectedResult))
 

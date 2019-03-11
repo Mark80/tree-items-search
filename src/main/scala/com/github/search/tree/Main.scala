@@ -5,9 +5,9 @@ import akka.event.LoggingAdapter
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.Http.ServerBinding
 import akka.stream.ActorMaterializer
-import com.github.search.tree.model.{Category, Item}
+import com.github.search.tree.model.{Category, Psychographics}
 import com.github.search.tree.repository.{CategoryRepository, ItemRepository}
-import com.github.search.tree.service.{CategoryService, ItemService}
+import com.github.search.tree.service.{CategoryService, PsychographicsService}
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.duration.FiniteDuration
@@ -27,11 +27,11 @@ object Main extends Routes {
 
   val categoryRepository =
     new CategoryRepository(JsonDataParser.getData[Category]("categories.json"))
-  val itemRepository =
-    new ItemRepository(JsonDataParser.getData[Item]("categories.json"))
+  val psychographicsRepository =
+    new ItemRepository(JsonDataParser.getData[Psychographics]("psychographics.json"))
 
   val categoryService = new CategoryService(categoryRepository)
-  val itemService = new ItemService(itemRepository)
+  val psychographicsService = new PsychographicsService(psychographicsRepository)
 
   def main(args: Array[String]): Unit = {
 

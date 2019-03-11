@@ -16,7 +16,7 @@ class IntegrationTest extends WordSpec with Matchers with OptionValues {
 
     "i'm be able to get category by name" in {
 
-      val expectedResult = Category(430, Some(-3), Some(332), Some(333), "Winter Sports", 4, None)
+      val expectedResult = Category(430, Some(-3), Some(332), Some(333), "Winter Sports", 4, None, None, None)
 
       val categoryFound = categoryService.getByName("Winter Sports").value
 

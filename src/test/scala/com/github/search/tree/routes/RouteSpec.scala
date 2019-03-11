@@ -6,7 +6,7 @@ import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.github.search.tree.Routes
 import com.github.search.tree.model.Category
 import com.github.search.tree.routes.json.JsonSupport
-import com.github.search.tree.service.{CategoryService, ItemService}
+import com.github.search.tree.service.{CategoryService, PsychographicsService}
 import org.mockito.Mockito.{verify, when}
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.mockito.MockitoSugar
@@ -22,15 +22,14 @@ class RouteSpec extends WordSpec with Matchers with ScalaFutures with ScalatestR
   val routes = new Routes {
     implicit val executionContext: ExecutionContext = global
     def categoryService: CategoryService = categoryServiceMock
-    def itemService: ItemService = ???
+    def psychographicsService: PsychographicsService = ???
   }
 
   "CategoryRoutes" should {
     "return OK" when {
 
+      val expectedResult = Category(17, Some(-1), Some(13), None, "Category1", 1, None, None, None)
       "category was found" in {
-
-        val expectedResult = Category(17, Some(-1), Some(13), None, "Category1", 1, None)
 
         when(categoryServiceMock.getByName("Category1")).thenReturn(Some(expectedResult))
 
@@ -46,8 +45,6 @@ class RouteSpec extends WordSpec with Matchers with ScalaFutures with ScalatestR
       }
 
       "category was found from parent" in {
-
-        val expectedResult = Category(17, Some(-1), Some(13), None, "Category1", 1, None)
 
         when(categoryServiceMock.getFromParentByName("parent", "Category1")).thenReturn(Some(expectedResult))
 

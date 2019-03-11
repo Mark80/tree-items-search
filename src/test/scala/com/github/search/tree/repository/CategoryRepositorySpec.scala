@@ -5,11 +5,11 @@ import org.scalatest.{Matchers, OptionValues, WordSpec}
 
 class CategoryRepositorySpec extends WordSpec with Matchers with OptionValues {
 
-  val category4 = Category(17, Some(-3), Some(13), None, "Category 4", 3, None)
-  val category2 = Category(18, Some(-3), Some(13), None, "Category 2", 2, None)
-  val category3 = Category(19, Some(-3), Some(13), None, "Category 3", 2, Some(List(category4)))
-  val category1A = Category(27, Some(-1), Some(13), None, "Category 1", 1, Some(List(category3, category2)))
-  val category1B = Category(57, Some(-1), Some(13), None, "Category 1B", 1, None)
+  val category4 = Category(17, Some(-3), Some(13), None, "Category 4", 3, None, None, None)
+  val category2 = Category(18, Some(-3), Some(13), None, "Category 2", 2, None, None, None)
+  val category3 = Category(19, Some(-3), Some(13), None, "Category 3", 2, Some(List(category4)), None, None)
+  val category1A = Category(27, Some(-1), Some(13), None, "Category 1", 1, Some(List(category3, category2)), None, None)
+  val category1B = Category(57, Some(-1), Some(13), None, "Category 1B", 1, None, None, None)
 
   private val categories: List[Category] = List(category1A, category1B)
   val dataRepository = new CategoryRepository(categories)
